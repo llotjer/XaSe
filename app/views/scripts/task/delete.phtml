@@ -1,0 +1,121 @@
+<div class="text-center scale-[0.8]">
+        <h1 class="text-3xl font-bold mb-4"><?php if($this->lang == 'eng'): ?>
+                                                Delete To-Do
+                                            <?php elseif($this->lang == 'cat'): ?>
+                                                Eliminar Tasca
+                                            <?php elseif($this->lang == 'esp'): ?>
+                                                Eliminar Tarea
+                                            <?php endif; ?></h1>
+
+    <?php if ($this->tasks): ?>
+        <div class="mt-4 p-4 bg-gray-100 rounded relative">
+        <?php if (count($this->tasks) > 4): ?>
+            <button id="prev" class="absolute top-1/2 left-0 p-2 z-10 bg-gray-300 transform -translate-y-1/2 -translate-x-6">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+        <?php endif; ?>
+            <div id="task-container" class="flex justify-start overflow-x-hidden whitespace-nowrap max-w-4xl space-x-4 mx-4">
+                <?php foreach ($this->tasks as $index => $task): ?>
+                    <form action="<?php echo WEB_ROOT ?>/confirmDelete" method="POST" class="flex-shrink-0 w-[24%] p-2 group">
+                        <div class="border border-gray-300 rounded-lg max-w-full p-14 text-center flex justify-center relative">
+                            <div class="absolute inset-0 bg-red-200 opacity-0 group-hover:opacity-50 transition-opacity duration-300 z-0"></div>
+                                <div class="space-y-4 relative z-10">
+
+                                    <div class="mb-4">
+                                        <span><?= $task['id'] ?></span>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <span><?= $task['user'] ?></span>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <span><?= $task['title'] ?></span>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <span class="
+                                            <?php 
+                                                if ($task['status'] === 'pending') echo 'text-yellow-500';
+                                                elseif ($task['status'] === 'in_progress') echo 'text-blue-500';
+                                                elseif ($task['status'] === 'completed') echo 'text-green-500';
+                                            ?>
+                                        "><?= $task['status'] ?>
+                                        </span>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="start-date" class="block text-sm font-medium text-gray-700"><?php if($this->lang == 'eng'): ?>
+                                                Start Date
+                                            <?php elseif($this->lang == 'cat'): ?>
+                                                Data Inici
+                                            <?php elseif($this->lang == 'esp'): ?>
+                                                Fecha Inicio
+                                            <?php endif; ?></label>
+                                        <span><?= $task['start_date'] ?></span>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label for="end-date" class="block text-sm font-medium text-gray-700"><?php if($this->lang == 'eng'): ?>
+                                                End Date
+                                            <?php elseif($this->lang == 'cat'): ?>
+                                                Data Final
+                                            <?php elseif($this->lang == 'esp'): ?>
+                                                Fecha Fin
+                                            <?php endif; ?></label>
+                                        <span><?= $task['end_date'] ?></span>
+                                    </div>
+
+                                </div>
+                            <input type="hidden" name="id" value="<?= $task['id'] ?>">
+                            <button type="submit" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"></button>
+                        </div>
+                    </form>
+                <?php endforeach; ?>
+            </div>
+            <?php if (count($this->tasks) > 4): ?>
+                <button id="next" class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-6 bg-gray-300 p-2 z-10">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            <?php endif; ?>
+        </div>
+    <?php else: ?>
+        <p class="text-red-500 mt-4"><?php if($this->lang == 'eng'): ?>
+                    Tasks not found
+                <?php elseif($this->lang == 'cat'): ?>
+                    No s'han trobat tasques
+                <?php elseif($this->lang == 'esp'): ?>
+                    No se han encontrado tareas
+                <?php endif; ?></p>
+    <?php endif; ?>
+        
+        <a href="<?php echo WEB_ROOT ?>" class="inline-block mt-6">
+            <button class="flex items-center justify-center w-12 h-12 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all duration-300 ease-in-out">
+                <svg class="w-6 h-6 transform transition-transform hover:rotate-360 duration-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12"></path>
+                </svg>
+            </button>
+        </a>
+    </div>
+
+    <script>
+    const scrollAmount = 230;
+
+    document.getElementById('next').addEventListener('click', function() {
+        document.getElementById('task-container').scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    });
+
+    document.getElementById('prev').addEventListener('click', function() {
+        document.getElementById('task-container').scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
+    });
+    </script>
