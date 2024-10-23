@@ -1,0 +1,110 @@
+    <!DOCTYPE html>
+
+    <div class="text-center">
+        
+        <h1 class="text-3xl font-bold mb-4"><?php if($this->lang == 'eng'): ?>
+                                                Delete To-Do
+                                            <?php elseif($this->lang == 'cat'): ?>
+                                                Eliminar Tasca
+                                            <?php elseif($this->lang == 'esp'): ?>
+                                                Eliminar Tarea
+                                            <?php endif; ?></h1>
+
+        <?php if ($this->task): ?>
+
+            <div class="flex-shrink-0 w-[24%] p-2">
+                    <div class="border border-gray-300 rounded-lg max-w-full p-14 text-center flex justify-center mx-auto">
+                        <form action= "<?php echo WEB_ROOT?>/deleteTask" method="POST" class="space-y-4">
+
+                            <div class="mb-4">
+                                <span><?= $this->task['id'] ?></span>
+                                <input type="hidden" name="id" value="<?= $this->task['id'] ?>">
+                            </div>
+
+                            <div class="mb-4">
+                                <span><?= $this->task['user'] ?></span>
+                            </div>
+
+                            <div class="mb-4">
+                                <span><?= $this->task['title'] ?></span>
+                            </div>
+
+                            <div class="mb-4">
+                                <span class="
+                                    <?php 
+                                        if ($this->task['status'] === 'pending') echo 'text-yellow-500';
+                                        elseif ($this->task['status'] === 'in_progress') echo 'text-blue-500';
+                                        elseif ($this->task['status'] === 'completed') echo 'text-green-500';
+                                    ?>
+                                "><?= $this->task['status'] ?>
+                                </span>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="start-date" class="block text-sm font-medium text-gray-700"><?php if($this->lang == 'eng'): ?>
+                                                Start Date
+                                            <?php elseif($this->lang == 'cat'): ?>
+                                                Data Inici
+                                            <?php elseif($this->lang == 'esp'): ?>
+                                                Fecha Inicio
+                                            <?php endif; ?></label>
+                                <span><?= $this->task['start_date'] ?></span>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="end-date" class="block text-sm font-medium text-gray-700"><?php if($this->lang == 'eng'): ?>
+                                                End Date
+                                            <?php elseif($this->lang == 'cat'): ?>
+                                                Data Final
+                                            <?php elseif($this->lang == 'esp'): ?>
+                                                Fecha Fin
+                                            <?php endif; ?></label>
+                                <span><?= $this->task['end_date'] ?></span>
+                            </div>
+
+                            <div>
+                                <button type="submit" class="flex items-center justify-center w-full px-4 py-2 
+                                                            bg-red-600 text-white font-medium text-sm 
+                                                            rounded-lg hover:bg-red-700 focus:outline-none 
+                                                            focus:ring-2 focus:ring-offset-2 focus:ring-red-500 
+                                                            transition duration-150 ease-in-out">
+                                    <svg class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11H9v4h4v-2H10v-2z" 
+                                                clip-rule="evenodd" />
+                                    </svg>
+                                    <?php if($this->lang == 'eng'): ?>
+                                                Confirm Delete To-Do
+                                            <?php elseif($this->lang == 'cat'): ?>
+                                                Confirmar Eliminar Tasca
+                                            <?php elseif($this->lang == 'esp'): ?>
+                                                Confirmar Eliminar Tarea
+                                            <?php endif; ?>
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+        <?php else: ?>
+            <p class="text-red-500 mt-4"><?php if($this->lang == 'eng'): ?>
+                    Tasks not found
+                <?php elseif($this->lang == 'cat'): ?>
+                    No s'han trobat tasques
+                <?php elseif($this->lang == 'esp'): ?>
+                    No se han encontrado tareas
+                <?php endif; ?></p>
+        <?php endif; ?>
+
+        <a href="<?php echo WEB_ROOT ?>/delete" class="inline-block mt-6">
+            <button class="flex items-center justify-center w-12 h-12 bg-blue-600 text-white 
+                            rounded-full hover:bg-blue-700 transition-all duration-300 ease-in-out">
+                <svg class="w-6 h-6 transform transition-transform hover:rotate-360 duration-500" 
+                            fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" 
+                            xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12"></path>
+                </svg>
+            </button>
+        </a>
+
+    </div>
