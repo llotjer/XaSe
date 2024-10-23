@@ -100,3 +100,4 @@ class TaskModel {
         $lastTask = end($this->readTasks());
         return $lastTask['id'] + 1;
     }
+}
