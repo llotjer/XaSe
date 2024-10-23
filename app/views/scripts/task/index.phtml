@@ -5,32 +5,32 @@
     <div class="absolute -top-40 left-1/2 transform -translate-x-1/2 flex space-x-2">
     <form action= "<?php echo WEB_ROOT?>/lang" method="POST" class="flex items-center">
     <input type="hidden" name="lang" value="eng">
-    <button type="submit" class="text-sm">ENG</button>
+    <button type="submit" class="text-sm text-gray-400 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300">ENG</button>
     </form>
-    <p> | </p>
+    <p class="text-sm text-gray-400"> | </p>
     <form action= "<?php echo WEB_ROOT?>/lang" method="POST" class="flex items-center">
     <input type="hidden" name="lang" value="cat">
-    <button type="submit" class="text-sm">CAT</button>
+    <button type="submit" class="text-sm text-gray-400 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300">CAT</button>
     </form>
-    <p> | </p>
+    <p class="text-sm text-gray-400"> | </p>
     <form action= "<?php echo WEB_ROOT?>/lang" method="POST" class="flex items-center">
     <input type="hidden" name="lang" value="esp">
-    <button type="submit" class="text-sm">ESP</button>
+    <button type="submit" class="text-sm text-gray-400 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300">ESP</button>
     </form>
     </div>
 
     <ul class="flex flex-wrap -mb-px justify-center w-full mt-16">
         <li class="me-2">
-            <a href="#" class="inline-block p-4 border-transparent rounded-t-lg text-gray-600 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300" data-menu="CREATE"><span class="text-blue-600">C</span>REATE</a>
+            <a href="#" class="inline-block p-4 border-transparent rounded-t-lg text-gray-400 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300" data-menu="CREATE"><span class="text-blue-600">C</span>REATE</a>
         </li>
         <li class="me-2">
-            <a href="#" class="inline-block p-4 border-transparent rounded-t-lg text-gray-600 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300" data-menu="READ"><span class="text-blue-600">R</span>EAD</a>
+            <a href="#" class="inline-block p-4 border-transparent rounded-t-lg text-gray-400 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300" data-menu="READ"><span class="text-blue-600">R</span>EAD</a>
         </li>
         <li class="me-2">
-            <a href="#" class="inline-block p-4 border-transparent rounded-t-lg text-gray-600 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300" data-menu="UPDATE"><span class="text-blue-600">U</span>PDATE</a>
+            <a href="#" class="inline-block p-4 border-transparent rounded-t-lg text-gray-400 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300" data-menu="UPDATE"><span class="text-blue-600">U</span>PDATE</a>
         </li>
         <li class="me-2">
-            <a href="#" class="inline-block p-4 border-transparent rounded-t-lg text-gray-600 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300" data-menu="DELETE"><span class="text-blue-600">D</span>ELETE</a>
+            <a href="#" class="inline-block p-4 border-transparent rounded-t-lg text-gray-400 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300" data-menu="DELETE"><span class="text-blue-600">D</span>ELETE</a>
         </li>
     </ul>
     
@@ -38,7 +38,7 @@
         <div id="menu-content"></div>
     </div>
 </div>
-<p><?php if($this->lang == 'eng'): ?>
+<p class="text-gray-600"><?php if($this->lang == 'eng'): ?>
         Project made by Sergio & Xavi
     <?php elseif($this->lang == 'cat'): ?>
         Projecte realitzat per Sergio & Xavi
