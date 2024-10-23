@@ -143,3 +143,4 @@ public function updateAction(){
         header("Location: " . WEB_ROOT);
         exit();
     }
+}
