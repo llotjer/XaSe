@@ -1,0 +1,72 @@
+<?php if($this->lang): ?>
+
+<div class="relative w-4/5 h-128 p-8 text-2xl font-semibold text-center text-gray-500 dark:text-gray-400">
+
+    <div class="absolute -top-40 left-1/2 transform -translate-x-1/2 flex space-x-2">
+    <form action= "<?php echo WEB_ROOT?>/lang" method="POST" class="flex items-center">
+    <input type="hidden" name="lang" value="eng">
+    <button type="submit" class="text-sm">ENG</button>
+    </form>
+    <p> | </p>
+    <form action= "<?php echo WEB_ROOT?>/lang" method="POST" class="flex items-center">
+    <input type="hidden" name="lang" value="cat">
+    <button type="submit" class="text-sm">CAT</button>
+    </form>
+    <p> | </p>
+    <form action= "<?php echo WEB_ROOT?>/lang" method="POST" class="flex items-center">
+    <input type="hidden" name="lang" value="esp">
+    <button type="submit" class="text-sm">ESP</button>
+    </form>
+    </div>
+
+    <ul class="flex flex-wrap -mb-px justify-center w-full mt-16">
+        <li class="me-2">
+            <a href="#" class="inline-block p-4 border-transparent rounded-t-lg text-gray-600 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300" data-menu="CREATE"><span class="text-blue-600">C</span>REATE</a>
+        </li>
+        <li class="me-2">
+            <a href="#" class="inline-block p-4 border-transparent rounded-t-lg text-gray-600 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300" data-menu="READ"><span class="text-blue-600">R</span>EAD</a>
+        </li>
+        <li class="me-2">
+            <a href="#" class="inline-block p-4 border-transparent rounded-t-lg text-gray-600 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300" data-menu="UPDATE"><span class="text-blue-600">U</span>PDATE</a>
+        </li>
+        <li class="me-2">
+            <a href="#" class="inline-block p-4 border-transparent rounded-t-lg text-gray-600 hover:text-blue-600 hover:border-blue-600 hover:border-opacity-100 transform hover:scale-125 transition-transform duration-300 dark:hover:text-gray-300" data-menu="DELETE"><span class="text-blue-600">D</span>ELETE</a>
+        </li>
+    </ul>
+    
+    <div id="custom-menu" class="hidden mt-4 p-4">
+        <div id="menu-content"></div>
+    </div>
+</div>
+<p><?php if($this->lang == 'eng'): ?>
+        Project made by Sergio & Xavi
+    <?php elseif($this->lang == 'cat'): ?>
+        Projecte realitzat per Sergio & Xavi
+    <?php elseif($this->lang == 'esp'): ?>
+        Proyecto hecho por Sergio & Xavi
+    <?php endif; ?>
+</p>
+<?php endif; ?>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('li a');
+    
+    links.forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            const selectedMenu = link.getAttribute('data-menu');
+
+            if (selectedMenu === 'CREATE') {
+                window.location.href = '<?php echo WEB_ROOT; ?>/create';
+            } else if (selectedMenu === 'READ') {
+                window.location.href = '<?php echo WEB_ROOT; ?>/read';
+            } else if (selectedMenu === 'UPDATE') {
+                window.location.href = '<?php echo WEB_ROOT; ?>/update';
+            } else if (selectedMenu === 'DELETE') {
+                window.location.href = '<?php echo WEB_ROOT; ?>/delete';
+            }
+        });
+    });
+});
+</script>
