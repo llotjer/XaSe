@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+    <div class="text-center">
+        
+        <h1 class="text-3xl font-bold mb-4"><?php if($this->lang == 'eng'): ?>
+                                                Update To-Do
+                                            <?php elseif($this->lang == 'cat'): ?>
+                                                Actualitzar Tasca
+                                            <?php elseif($this->lang == 'esp'): ?>
+                                                Actualizar Tarea
+                                            <?php endif; ?></h1>
+
+        <?php if ($this->task): ?>
+
+            <div class="border border-gray-300 rounded-lg max-w-full p-14 text-center flex justify-center">
+                <form action= "<?php echo WEB_ROOT?>/updateTask" method="POST" class="space-y-4">
+
+                    <div class="mb-4">
+                        <span><?= $this->task['id'] ?></span>
+                        <input type="hidden" name="id" value="<?= $this->task['id'] ?>">
+                    </div>
+
+                    <div class="mb-4">
+                        <input type="text" name="user" maxlength="10" class="border border-gray-300 p-2 rounded w-full" 
+                        value="<?= $this->task['user'] ?>" />
+                    </div>
+
+                    <div class="mb-4">
+                        <input type="text" name="title" maxlength="10" class="border border-gray-300 p-2 rounded w-full" 
+                        value="<?= $this->task['title'] ?>" />
+                    </div>
+
+                    <div class="mb-4">
+                        <select name="status" id="status" class="border border-gray-300 p-2 rounded w-full">
+                        <option value="" disabled selected hidden>
+                                <?php if($this->lang == 'eng'): ?>
+                                    Status
+                                <?php elseif($this->lang == 'cat'): ?>
+                                    Estat
+                                <?php elseif($this->lang == 'esp'): ?>
+                                    Estado
+                                <?php endif; ?>
+                        </option>
+                        <option class="text-yellow-500" value="pending"><?php if($this->lang == 'eng'): ?>
+                                    Pending
+                                <?php elseif($this->lang == 'cat'): ?>
+                                    Pendent
+                                <?php elseif($this->lang == 'esp'): ?>
+                                    Pendiente
+                                <?php endif; ?></option>
+                        <option class="text-blue-500" value="in_progress"><?php if($this->lang == 'eng'): ?>
+                                    In progress
+                                <?php elseif($this->lang == 'cat'): ?>
+                                    En progrés
+                                <?php elseif($this->lang == 'esp'): ?>
+                                    En progreso
+                                <?php endif; ?></option>
+                        <option class="text-green-500" value="completed"><?php if($this->lang == 'eng'): ?>
+                                    Completed
+                                <?php elseif($this->lang == 'cat'): ?>
+                                    Acabada
+                                <?php elseif($this->lang == 'esp'): ?>
+                                    Terminada
+                                <?php endif; ?></option>
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="start_date" class="block text-sm font-medium text-gray-700"><?php if($this->lang == 'eng'): ?>
+                                                Start Date
+                                            <?php elseif($this->lang == 'cat'): ?>
+                                                Data Inici
+                                            <?php elseif($this->lang == 'esp'): ?>
+                                                Fecha Inicio
+                                            <?php endif; ?></label>
+                        <input type="text" id="start_date" name="start_date" maxlength="10" class="border border-gray-300 
+                                p-2 rounded w-full" value="<?= $this->task['start_date'] ?>" />
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="end_date"  class="block text-sm font-medium text-gray-700"><?php if($this->lang == 'eng'): ?>
+                                                End Date
+                                            <?php elseif($this->lang == 'cat'): ?>
+                                                Data Final
+                                            <?php elseif($this->lang == 'esp'): ?>
+                                                Fecha Fin
+                                            <?php endif; ?></label>
+                        <input type="text" id="end_date" name="end_date" maxlength="10" class="border border-gray-300 p-2 
+                                rounded w-full" value="<?= $this->task['end_date'] ?>" />
+                    </div>
+
+                    <div>
+                        <button type="submit" class="flex items-center justify-center w-full px-4 py-2 
+                                                    bg-indigo-600 text-white font-medium text-sm 
+                                                    rounded-lg hover:bg-indigo-700 focus:outline-none 
+                                                    focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 
+                                                    transition duration-150 ease-in-out">
+                            <svg class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11H9v4h4v-2H10v-2z" 
+                                        clip-rule="evenodd" />
+                            </svg>
+                            <?php if($this->lang == 'eng'): ?>
+                                    Update To-Do
+                                <?php elseif($this->lang == 'cat'): ?>
+                                    Actualitzar Tasca
+                                <?php elseif($this->lang == 'esp'): ?>
+                                    Actualizar Tarea
+                                <?php endif; ?>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        <?php else: ?>
+            <p class="text-red-500 mt-4"><?php if($this->lang == 'eng'): ?>
+                    Tasks not found
+                <?php elseif($this->lang == 'cat'): ?>
+                    No s'han trobat tasques
+                <?php elseif($this->lang == 'esp'): ?>
+                    No se han encontrado tareas
+                <?php endif; ?></p>
+        <?php endif; ?>
+
+        <a href="<?php echo WEB_ROOT ?>/update" class="inline-block mt-6">
+            <button class="flex items-center justify-center w-12 h-12 bg-blue-600 text-white 
+                            rounded-full hover:bg-blue-700 transition-all duration-300 ease-in-out">
+                <svg class="w-6 h-6 transform transition-transform hover:rotate-360 duration-500" 
+                            fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" 
+                            xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12"></path>
+                </svg>
+            </button>
+        </a>
+
+    </div>
