@@ -1,0 +1,40 @@
+<body class="flex items-center justify-center h-screen bg-gray-100">
+
+    <div class="text-center">
+        <h1 class="text-3xl font-semibold text-center text-green-500 dark:text-green-400"><?php if($this->lang == 'eng'): ?>
+                                                TASK DELETED SUCCESSFULLY!
+                                            <?php elseif($this->lang == 'cat'): ?>
+                                                TASCA ELIMINADA CORRECTAMENT!
+                                            <?php elseif($this->lang == 'esp'): ?>
+                                                TAREA ELIMINADA CORRECTAMENTE!
+                                            <?php endif; ?></h1>
+        <p class="text-lg text-gray-600"><?php if($this->lang == 'eng'): ?>
+                                                You will be automatically redirected to delete page in  
+                                            <?php elseif($this->lang == 'cat'): ?>
+                                                Es redirigirà automàticament a la pàgina d'eliminació en 
+                                            <?php elseif($this->lang == 'esp'): ?>
+                                                Se redirigirá automaticamente a la página de eliminación en 
+                                            <?php endif; ?><span id="countdown">3</span><?php if($this->lang == 'eng'): ?>
+                                                seconds...
+                                            <?php elseif($this->lang == 'cat'): ?>
+                                                segons...
+                                            <?php elseif($this->lang == 'esp'): ?>
+                                                segundos...
+                                            <?php endif; ?></p>
+    </div>
+
+    <script>
+    let countdownElement = document.getElementById('countdown');
+    let countdownValue = 3;
+
+    const countdownTimer = setInterval(() => {
+        countdownValue--;
+        countdownElement.textContent = countdownValue;
+
+        if (countdownValue <= 0) {
+            clearInterval(countdownTimer);
+            window.location.href = '<?php echo WEB_ROOT; ?>/delete';
+        }
+    }, 1000);
+</script>
+</body>
