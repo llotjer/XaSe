@@ -37,14 +37,29 @@
 
                             <div class="mb-4">
                                         <span class="
+                                                <?php 
+                                                    if ($task['status'] === 'pending') echo 'text-yellow-500';
+                                                    elseif ($task['status'] === 'in_progress') echo 'text-blue-500';
+                                                    elseif ($task['status'] === 'completed') echo 'text-green-500';
+                                                ?>
+                                            ">
                                             <?php 
-                                                if ($task['status'] === 'pending') echo 'text-yellow-500';
-                                                elseif ($task['status'] === 'in_progress') echo 'text-blue-500';
-                                                elseif ($task['status'] === 'completed') echo 'text-green-500';
+                                                if ($this->lang === 'eng') {
+                                                    if ($task['status'] === 'pending') echo 'Pending';
+                                                    elseif ($task['status'] === 'in_progress') echo 'In progress';
+                                                    elseif ($task['status'] === 'completed') echo 'Completed';
+                                                } elseif ($this->lang === 'cat') {
+                                                    if ($task['status'] === 'pending') echo 'Pendent';
+                                                    elseif ($task['status'] === 'in_progress') echo 'En progrés';
+                                                    elseif ($task['status'] === 'completed') echo 'Acabada';
+                                                } elseif ($this->lang === 'esp') {
+                                                    if ($task['status'] === 'pending') echo 'Pendiente';
+                                                    elseif ($task['status'] === 'in_progress') echo 'En progreso';
+                                                    elseif ($task['status'] === 'completed') echo 'Terminada';
+                                                }
                                             ?>
-                                        "><?= $task['status'] ?>
                                         </span>
-                                    </div>
+                            </div>
 
                             <div class="mb-4">
                                 <label for="start-date" class="block text-sm font-medium text-gray-700"><?php if($this->lang == 'eng'): ?>
