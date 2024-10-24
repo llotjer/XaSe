@@ -2,7 +2,7 @@
 
 class TaskModel {
 
-    private $jsonFile = ROOT_PATH . '/app/models/data.json';
+    private $jsonFile = ROOT_PATH . '/app/data/data.json';
     
     public function addTask(string $user, string $title, string $status, string $start_date, string $end_date): bool{
 
