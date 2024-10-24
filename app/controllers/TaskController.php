@@ -31,6 +31,12 @@ class TaskController extends Controller{
                 ];
         }
 
+        //to control vulnerabilities
+        /*if(in_array(NULL || '', $data)){
+            header("Location:" . WEB_ROOT . "/error");
+            exit;
+        }*/
+
         $result = $this->model->addTask($data);
 
         if(!$result){
