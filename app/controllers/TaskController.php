@@ -23,14 +23,15 @@ class TaskController extends Controller{
     public function addAction(){
         
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $user = $_POST['user'] ?? '';
-            $title = $_POST['title'] ?? '';
-            $status = $_POST['status'] ?? '';
-            $start_date = $_POST['start_date'] ?? '';
-            $end_date = $_POST['end_date'] ?? '';
+            $data = ['user' => $_POST['user'],
+                'title' => $_POST['title'],
+                'status' => $_POST['status'],
+                'start_date' => $_POST['start_date'],
+                'end_date' => $_POST['end_date'],
+                ];
         }
 
-        $result = $this->model->addTask($user, $title, $status, $start_date, $end_date);
+        $result = $this->model->addTask($data);
 
         if(!$result){
             echo 'Error saving task.';
