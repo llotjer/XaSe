@@ -4,16 +4,15 @@ class TaskModel {
 
     private $jsonFile = ROOT_PATH . '/app/data/data.json';
     
-    public function addTask(string $user, string $title, string $status, string $start_date, string $end_date): bool{
+    public function addTask(array $data): bool{
 
             $newTask = [
                 'id' => $this->getNextId(),
-                'user' => $user,
-                'title' => $title,
-                'status' => $status,
-                'start_date' => $start_date,
-                'end_date' => $end_date,
-                'status' => $status,
+                'user' => $data['user'],
+                'title' => $data['title'],
+                'status' => $data['status'],
+                'start_date' => $data['start_date'],
+                'end_date' => $data['end_date'],
             ];
             
             $tasks = $this->readTasks();
