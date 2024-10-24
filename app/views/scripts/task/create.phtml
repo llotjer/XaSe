@@ -17,18 +17,18 @@
                     placeholder="<?php if($this->lang == 'eng'): ?>User
                     <?php elseif($this->lang == 'cat'): ?>Usuari
                     <?php elseif($this->lang == 'esp'): ?>Usuario
-                    <?php endif; ?>" />
+                    <?php endif; ?>" required/>
                 </div>
                 <div class="mb-4">
                     <input type="text" name="title" class="border border-gray-300 p-2 rounded w-full" 
                     placeholder="<?php if($this->lang == 'eng'): ?>To-Do
                     <?php elseif($this->lang == 'cat'): ?>Tasca
                     <?php elseif($this->lang == 'esp'): ?>Tarea
-                    <?php endif; ?>" />
+                    <?php endif; ?>" required/>
                 </div>
                 <div class="mb-4">
                     <select name="status" id="status" class="border border-gray-300 p-2 rounded w-full" 
-                    placeholder="Status">
+                    placeholder="Status" required>
                         <option value="" disabled selected hidden>
                                 <?php if($this->lang == 'eng'): ?>
                                     Status
@@ -69,7 +69,7 @@
                                     Fecha Inicio
                                 <?php endif; ?></label>
                     <input type="text" id="start_date" name="start_date" class="border border-gray-300 
-                            p-2 rounded w-full" placeholder="dd/mm/aaaa" />
+                            p-2 rounded w-full" placeholder="dd/mm/aaaa" required/>
                 </div>
                 <div class="mb-4">
                     <label for="end_date" class="block text-sm font-medium text-gray-700"><?php if($this->lang == 'eng'): ?>
@@ -80,7 +80,7 @@
                                     Fecha Fin
                                 <?php endif; ?></label>
                     <input type="text" id="end_date" name="end_date" class="border border-gray-300 p-2 
-                            rounded w-full" placeholder="dd/mm/aaaa" />
+                            rounded w-full" placeholder="dd/mm/aaaa" required/>
                 </div>
                     
                 <div>
