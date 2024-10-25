@@ -36,13 +36,8 @@
                                     </div>
 
                                     <div class="mb-4">
-                                        <span class="
-                                            <?php 
-                                                if ($task['status'] === 'pending') echo 'text-yellow-500';
-                                                elseif ($task['status'] === 'in_progress') echo 'text-blue-500';
-                                                elseif ($task['status'] === 'completed') echo 'text-green-500';
-                                            ?>
-                                        "><?= $task['status'] ?>
+                                        <span class="<?= $this->taskDetails[$task['id']]['statusColor'] ?>">
+                                            <?= $this->taskDetails[$task['id']]['statusText'] ?>
                                         </span>
                                     </div>
 
