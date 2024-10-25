@@ -58,27 +58,45 @@ class TaskController extends Controller{
 
         $taskDetails = $this->getIdTextColor($tasks);
 
-        $this->view->tasks = $tasks;
         $this->view->taskDetails = $taskDetails;
     }
 
-public function updateAction(){
+    public function updateAction(){
+        
         $this->view->lang = $_SESSION['lang'] ?? 'eng';
+        
         $tasks = $this->model->readTasks();
+        
         $this->view->tasks = $tasks;
+
+        $taskDetails = $this->getIdTextColor($tasks);
+
+        $this->view->taskDetails = $taskDetails;
     }
 
     public function confirmUpdateAction(){
+        
         $this->view->lang = $_SESSION['lang'] ?? 'eng';
+        
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $id = $_POST['id'] ?? '';
         }
 
         $task = $this->model->getTaskById($id);
+        
         $this->view->task = $task;
+
+        $tasksDetails = $this->getIdTextColor($this->model->readTasks());
+    
+        if (isset($tasksDetails[$id])) {
+            $this->view->taskDetails = $tasksDetails[$id];
+        } else {
+            echo "Details not found.";
+        }
     }
 
     public function taskUpdateAction(){
+        
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $id = $_POST['id'] ?? '';
             $user = $_POST['user'] ?? '';
@@ -99,12 +117,20 @@ public function updateAction(){
     }
 
     public function deleteAction(){
+        
         $this->view->lang = $_SESSION['lang'] ?? 'eng';
+        
         $tasks = $this->model->readTasks();
+        
         $this->view->tasks = $tasks;
+
+        $taskDetails = $this->getIdTextColor($tasks);
+
+        $this->view->taskDetails = $taskDetails;
     }
 
     public function confirmDeleteAction(){
+        
         $this->view->lang = $_SESSION['lang'] ?? 'eng';
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -112,10 +138,12 @@ public function updateAction(){
         }
 
         $task = $this->model->getTaskById($id);
+        
         $this->view->task = $task;
     }
 
     public function taskDeleteAction(){
+        
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $id = $_POST['id'] ?? '';
         }
@@ -137,14 +165,17 @@ public function updateAction(){
     }
 
     public function successUpdateAction(){
+        
         $this->view->lang = $_SESSION['lang'] ?? 'eng';
     }
 
     public function successDeleteAction(){
+        
         $this->view->lang = $_SESSION['lang'] ?? 'eng';
     }
 
     public function langAction(){
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $lang = $_POST['lang'] ?? '';
             $this->view->lang = $lang;
@@ -156,28 +187,28 @@ public function updateAction(){
         exit();
     }
 
-        public function getIdTextColor($tasks): array {
+    public function getIdTextColor($tasks): array {
         
-        $taskDetails = [];
+    $taskDetails = [];
         
-        $statusTexts = [
-            'pending' => ['text' => ['eng' => 'Pending', 'cat' => 'Pendent', 'esp' => 'Pendiente'], 'color' => 'text-yellow-500'],
-            'in_progress' => ['text' => ['eng' => 'In progress', 'cat' => 'En progrés', 'esp' => 'En progreso'], 'color' => 'text-blue-500'],
-            'completed' => ['text' => ['eng' => 'Completed', 'cat' => 'Acabada', 'esp' => 'Terminada'], 'color' => 'text-green-500']
+    $statusTexts = [
+        'pending' => ['text' => ['eng' => 'Pending', 'cat' => 'Pendent', 'esp' => 'Pendiente'], 'color' => 'text-yellow-500'],
+        'in_progress' => ['text' => ['eng' => 'In progress', 'cat' => 'En progrés', 'esp' => 'En progreso'], 'color' => 'text-blue-500'],
+        'completed' => ['text' => ['eng' => 'Completed', 'cat' => 'Acabada', 'esp' => 'Terminada'], 'color' => 'text-green-500']
+    ];
+        
+    foreach ($tasks as $task) {
+        $status = $task['status'];
+        $id = $task['id'];
+
+        $statusText = $statusTexts[$status]['text'][$this->view->lang] ?? $status;
+        $statusColor = $statusTexts[$status]['color'] ?? '';
+
+        $taskDetails[$id] = [
+            'statusText' => $statusText,
+            'statusColor' => $statusColor
         ];
-        
-        foreach ($tasks as $task) {
-            $status = $task['status'];
-            $id = $task['id'];
-
-            $statusText = $statusTexts[$status]['text'][$this->view->lang] ?? $status;
-            $statusColor = $statusTexts[$status]['color'] ?? '';
-
-            $taskDetails[$id] = [
-                'statusText' => $statusText,
-                'statusColor' => $statusColor
-            ];
-        }
+    }
         
         return $taskDetails;
     }
