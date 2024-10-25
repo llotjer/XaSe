@@ -31,40 +31,36 @@
                     </div>
 
                     <div class="mb-4">
-                        <select name="status" id="status" class="border border-gray-300 p-2 rounded w-full">
-                        <option value="" disabled selected hidden>
-                                <?php if($this->lang == 'eng'): ?>
-                                    Status
-                                <?php elseif($this->lang == 'cat'): ?>
-                                    Estat
-                                <?php elseif($this->lang == 'esp'): ?>
-                                    Estado
-                                <?php endif; ?>
-                        </option>
-                        <option class="text-yellow-500" value="pending"><?php if($this->lang == 'eng'): ?>
-                                    Pending
-                                <?php elseif($this->lang == 'cat'): ?>
-                                    Pendent
-                                <?php elseif($this->lang == 'esp'): ?>
-                                    Pendiente
-                                <?php endif; ?></option>
-                        <option class="text-blue-500" value="in_progress"><?php if($this->lang == 'eng'): ?>
-                                    In progress
-                                <?php elseif($this->lang == 'cat'): ?>
-                                    En progrés
-                                <?php elseif($this->lang == 'esp'): ?>
-                                    En progreso
-                                <?php endif; ?></option>
-                        <option class="text-green-500" value="completed"><?php if($this->lang == 'eng'): ?>
-                                    Completed
-                                <?php elseif($this->lang == 'cat'): ?>
-                                    Acabada
-                                <?php elseif($this->lang == 'esp'): ?>
-                                    Terminada
-                                <?php endif; ?></option>
+                        <select name="status" id="status" class="border border-gray-300 p-2 rounded w-full" required>
+                            <option class="<?= $this->taskDetails['statusColor'] ?>">
+                                <?= $this->taskDetails['statusText'] ?>
+                            </option>
+                            <option class="text-yellow-500" value="pending"><?php if($this->lang == 'eng'): ?>
+                                        Pending
+                                    <?php elseif($this->lang == 'cat'): ?>
+                                        Pendent
+                                    <?php elseif($this->lang == 'esp'): ?>
+                                        Pendiente
+                                    <?php endif; ?>
+                            </option>
+                            <option class="text-blue-500" value="in_progress"><?php if($this->lang == 'eng'): ?>
+                                        In progress
+                                    <?php elseif($this->lang == 'cat'): ?>
+                                        En progrés
+                                    <?php elseif($this->lang == 'esp'): ?>
+                                        En progreso
+                                    <?php endif; ?>
+                            </option>
+                            <option class="text-green-500" value="completed"><?php if($this->lang == 'eng'): ?>
+                                        Completed
+                                    <?php elseif($this->lang == 'cat'): ?>
+                                        Acabada
+                                    <?php elseif($this->lang == 'esp'): ?>
+                                        Terminada
+                                    <?php endif; ?>
+                            </option>
                         </select>
                     </div>
-
                     <div class="mb-4">
                         <label for="start_date" class="block text-sm font-medium text-gray-700"><?php if($this->lang == 'eng'): ?>
                                                 Start Date
