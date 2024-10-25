@@ -55,6 +55,11 @@ class TaskController extends Controller{
         $tasks = $this->model->readTasks();
         
         $this->view->tasks = $tasks;
+
+        $taskDetails = $this->getIdTextColor($tasks);
+
+        $this->view->tasks = $tasks;
+        $this->view->taskDetails = $taskDetails;
     }
 
 public function updateAction(){
@@ -149,5 +154,31 @@ public function updateAction(){
         $this->view->lang = $_SESSION['lang'] ?? 'eng';
         header("Location: " . WEB_ROOT);
         exit();
+    }
+
+        public function getIdTextColor($tasks): array {
+        
+        $taskDetails = [];
+        
+        $statusTexts = [
+            'pending' => ['text' => ['eng' => 'Pending', 'cat' => 'Pendent', 'esp' => 'Pendiente'], 'color' => 'text-yellow-500'],
+            'in_progress' => ['text' => ['eng' => 'In progress', 'cat' => 'En progrés', 'esp' => 'En progreso'], 'color' => 'text-blue-500'],
+            'completed' => ['text' => ['eng' => 'Completed', 'cat' => 'Acabada', 'esp' => 'Terminada'], 'color' => 'text-green-500']
+        ];
+        
+        foreach ($tasks as $task) {
+            $status = $task['status'];
+            $id = $task['id'];
+
+            $statusText = $statusTexts[$status]['text'][$this->view->lang] ?? $status;
+            $statusColor = $statusTexts[$status]['color'] ?? '';
+
+            $taskDetails[$id] = [
+                'statusText' => $statusText,
+                'statusColor' => $statusColor
+            ];
+        }
+        
+        return $taskDetails;
     }
 }
